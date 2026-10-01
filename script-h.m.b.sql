@@ -95,3 +95,20 @@ INSERT INTO estoque (quantidade, id_produto) VALUES
 (200, 3),
 (80, 4),
 (35, 5);
+CREATE TABLE carrinho (
+    id_carrinho BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    id_cliente BIGINT NOT NULL,
+    id_produto BIGINT NOT NULL,
+
+    CONSTRAINT fk_carrinho_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    CONSTRAINT fk_carrinho_produto FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
+);
+
+INSERT INTO carrinho (quantidade, preco_unitario, id_cliente, id_produto) VALUES
+(1, 2500.00, 1, 1),
+(2, 120.00, 2, 2),
+(3, 49.90, 3, 3),
+(1, 28.50, 4, 4),
+(1, 150.00, 5, 5);
