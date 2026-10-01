@@ -148,3 +148,20 @@ INSERT INTO compra_produto (quantidade, valor_unitario, id_compra, id_produto) V
 (3, 49.90, 3, 3),
 (1, 28.50, 4, 4),
 (1, 150.00, 5, 5);
+
+CREATE TABLE pagamento (
+    id_pagamento BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    forma_pagamento VARCHAR(50) NOT NULL,
+    valor_pago DECIMAL(10, 2) NOT NULL,
+    status_pagamento VARCHAR(50) NOT NULL,
+    id_compra BIGINT NOT NULL,
+
+    CONSTRAINT fk_pagamento_compra FOREIGN KEY (id_compra) REFERENCES compra(id_compra)
+);
+
+INSERT INTO pagamento (forma_pagamento, valor_pago, status_pagamento, id_compra) VALUES
+('Cartão de Crédito', 2500.00, 'Aprovado', 1),
+('PIX', 240.00, 'Aprovado', 2),
+('Boleto Bancário', 149.70, 'Pendente', 3),
+('PIX', 28.50, 'Aprovado', 4),
+('Cartão de Crédito', 150.00, 'Aprovado', 5);
