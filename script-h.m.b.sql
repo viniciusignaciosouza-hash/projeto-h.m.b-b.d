@@ -81,3 +81,17 @@ INSERT INTO produto (nome, marca, preco, nota_avaliacao, id_categoria, id_fornec
 ('Camiseta Básica Algodão', 'EstiloPro', 49.90, 4.50, 3, 3),
 ('Café Orgânico 500g', 'Sabor Puro', 28.50, 4.70, 4, 4),
 ('Abajur de Mesa Minimalista', 'DecorLar', 150.00, 4.30, 5, 5);
+CREATE TABLE estoque (
+    id_estoque BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    quantidade INT,
+    id_produto BIGINT NOT NULL,
+
+    CONSTRAINT fk_estoque_produto FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
+);
+
+INSERT INTO estoque (quantidade, id_produto) VALUES
+(50, 1),
+(120, 2),
+(200, 3),
+(80, 4),
+(35, 5);
