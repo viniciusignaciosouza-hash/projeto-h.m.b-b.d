@@ -112,3 +112,22 @@ INSERT INTO carrinho (quantidade, preco_unitario, id_cliente, id_produto) VALUES
 (3, 49.90, 3, 3),
 (1, 28.50, 4, 4),
 (1, 150.00, 5, 5);
+
+CREATE TABLE compra (
+    id_compra BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    data_compra TIMESTAMP,
+    valor_total DECIMAL(10, 2) NOT NULL,
+    id_cliente BIGINT NOT NULL,
+    id_endereco BIGINT NOT NULL,
+
+    CONSTRAINT fk_compra_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    CONSTRAINT fk_compra_endereco FOREIGN KEY (id_endereco) REFERENCES endereco(id_endereco)
+);
+
+INSERT INTO compra (data_compra, valor_total, id_cliente, id_endereco) VALUES
+('2026-06-01 10:30:00', 2500.00, 1, 1),
+('2026-06-02 14:15:00', 240.00, 2, 2),
+('2026-06-03 09:00:00', 149.70, 3, 3),
+('2026-06-04 16:45:00', 28.50, 4, 4),
+('2026-06-05 11:20:00', 150.00, 5, 5);
+
