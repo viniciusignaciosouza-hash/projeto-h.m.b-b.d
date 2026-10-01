@@ -61,3 +61,23 @@ INSERT INTO fornecedor (nome, cnpj, contato) VALUES
 ('Moda Estilo Comércio', '34.567.890/0001-12', 'suporte@modaestilo.com'),
 ('Alimentos Saudáveis do Brasil', '45.678.901/0001-23', 'comercial@alimentosbrasil.com'),
 ('DecorLar Utilidades', '56.789.012/0001-34', 'atendimento@decorlar.com');
+
+CREATE TABLE produto (
+    id_produto BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    marca VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    nota_avaliacao DECIMAL(10, 2) NOT NULL,
+    id_categoria BIGINT NOT NULL,
+    id_fornecedor BIGINT NOT NULL,
+
+    CONSTRAINT fk_produto_categoria FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria),
+    CONSTRAINT fk_produto_fornecedor FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id_fornecedor)
+);
+
+INSERT INTO produto (nome, marca, preco, nota_avaliacao, id_categoria, id_fornecedor) VALUES
+('Smartphone X', 'TechBrand', 2500.00, 4.80, 1, 1),
+('Livro de SQL Avançado', 'Editora Saber', 120.00, 4.90, 2, 2),
+('Camiseta Básica Algodão', 'EstiloPro', 49.90, 4.50, 3, 3),
+('Café Orgânico 500g', 'Sabor Puro', 28.50, 4.70, 4, 4),
+('Abajur de Mesa Minimalista', 'DecorLar', 150.00, 4.30, 5, 5);
