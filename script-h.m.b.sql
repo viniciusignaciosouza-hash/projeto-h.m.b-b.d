@@ -48,4 +48,16 @@ INSERT INTO endereco (logradouro, numero, cidade, estado, cep, id_cliente) VALUE
 ('Rua da Bahia', '789', 'Belo Horizonte', 'MG', '30160-010', 3),
 ('Avenida das Torres', '1011', 'Curitiba', 'PR', '80010-020', 4),
 ('Rua dos Pampas', '52', 'Porto Alegre', 'RS', '90010-150', 5);
+CREATE TABLE fornecedor (
+    id_fornecedor BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cnpj VARCHAR(18) UNIQUE NOT NULL,
+    contato VARCHAR(255)
+);
 
+INSERT INTO fornecedor (nome, cnpj, contato) VALUES
+('Tech Distribuidora Ltda', '12.345.678/0001-90', 'contato@techdistribuidora.com'),
+('Editora Saber S.A.', '23.456.789/0001-01', 'vendas@editorasaber.com'),
+('Moda Estilo Comércio', '34.567.890/0001-12', 'suporte@modaestilo.com'),
+('Alimentos Saudáveis do Brasil', '45.678.901/0001-23', 'comercial@alimentosbrasil.com'),
+('DecorLar Utilidades', '56.789.012/0001-34', 'atendimento@decorlar.com');
