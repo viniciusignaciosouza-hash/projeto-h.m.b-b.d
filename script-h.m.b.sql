@@ -131,3 +131,20 @@ INSERT INTO compra (data_compra, valor_total, id_cliente, id_endereco) VALUES
 ('2026-06-04 16:45:00', 28.50, 4, 4),
 ('2026-06-05 11:20:00', 150.00, 5, 5);
 
+CREATE TABLE compra_produto (
+    id_compra_produto BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    quantidade INT NOT NULL,
+    valor_unitario DECIMAL(10, 2) NOT NULL,
+    id_compra BIGINT NOT NULL,
+    id_produto BIGINT NOT NULL,
+
+    CONSTRAINT fk_compra_produto_compra FOREIGN KEY (id_compra) REFERENCES compra(id_compra),
+    CONSTRAINT fk_compra_produto_produto FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
+);
+
+INSERT INTO compra_produto (quantidade, valor_unitario, id_compra, id_produto) VALUES
+(1, 2500.00, 1, 1),
+(2, 120.00, 2, 2),
+(3, 49.90, 3, 3),
+(1, 28.50, 4, 4),
+(1, 150.00, 5, 5);
